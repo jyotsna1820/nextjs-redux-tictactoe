@@ -120,3 +120,20 @@
     flex-direction: column;
   }
 }
+
+
+.squares {
+  background: #272727;
+  border: none;
+  font-size: 5rem;
+  /* font-weight: 800; */
+  cursor: pointer;
+  outline: none;
+}
+.squares:hover,
+.squares:focus,
+.squares:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+

@@ -1,0 +1,13 @@
+.squares{
+    width: 100px;
+    height: 100px;
+    background-color: #E3E4DB;
+}
+
+.X{
+    background-color: #AEA4BF;
+}
+
+.O{
+    background-color: #8F6593;
+}
