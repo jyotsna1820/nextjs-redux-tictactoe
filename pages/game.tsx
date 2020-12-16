@@ -1,11 +1,21 @@
+import React, {useState} from 'react';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import Navbar from '../src/components/Navbar';
-import { Grid, List, ListItem, Typography, ListItemText, Container } from '@material-ui/core';
+import {Typography } from '@material-ui/core';
 import css from '../styles/Game.module.css';
 import Board from '../src/components/Board';
+import {useSelector} from "react-redux";
+
 
 export default function Home() {
+    const [tile, setTile] = useState <Tile>(null);
+    const game = useSelector(
+        (state: rootState) => state.game)
+    const handleClick = () => {
+        const isNext = game.isNext;
+        setTile(isNext);
+    }
+  
     return (
       <div>
         <Head>
@@ -27,11 +37,11 @@ export default function Home() {
             </div>
             <div className={css.boardWrapper}>
             <div className={css.scoreList}>
-                <h1>
-                    Player X Score
-                </h1>
+                <h2>
+                    {game.playerX.name}(X)'s Score
+                </h2>
             </div>            
-            <Board />
+            <Board value={tile} onClick={handleClick}/>
             <div className={css.scoreList}>
                 <h1>
                     Player 0 Score

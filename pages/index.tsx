@@ -1,67 +1,35 @@
+import React from 'react';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Board from '../src/components/Board';
+import {Typography} from '@material-ui/core';
+import Navbar from '../src/components/Navbar';
+import Players from '../src/components/Players';
+import css from '../styles/Game.module.css';
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className={styles.container}>
+    <div className={css.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to Tic Tac Toe
-        </h1>
-        <Board />
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <Navbar />
+      <div className={css.gamePage}>
+            <div className={css.heading}>
+            <Typography variant="h2" gutterBottom>
+                Welcome to TIC TAC TOE 
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+                This tournament consists of 5 games. For each game, the winner gets 2 points and the loser gets 1 point.
+                In case of a draw, no one gets any points. 
+                The person scoring highest points after 5 games will be the ULTIMATE TIC-TAC-TOE champion! (woot woot!)
+            </Typography>
+            <div className={css.formWrapper}>
+              <Players />
+            </div> 
+          </div>
+      </div>
     </div>
   )
 };
+
+export default Home;

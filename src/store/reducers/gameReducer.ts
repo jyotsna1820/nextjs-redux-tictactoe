@@ -12,6 +12,7 @@ const initialState = {
 const gameReducer = (state=initialState, action) => {
     switch (action.type){
         case(actionTypes.SET_PLAYERS):
+            console.log("+++++++", action.payload)
             return {
                 ...state,
                 playerX: {...state.playerX, name:action.payload.name1},
@@ -27,5 +28,9 @@ const gameReducer = (state=initialState, action) => {
                 isNext: state.isNext==="X" ? "O" :"X",
                 winner
             }
+        default:
+            return state;
     }
 }
+
+export default gameReducer;

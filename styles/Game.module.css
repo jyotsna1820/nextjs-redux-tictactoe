@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
 .gamePage{
+    font-family: 'Roboto';
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -8,6 +11,7 @@
     margin: 0 auto;
 }
 .heading{
+    font-weight: 400;
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -35,3 +39,56 @@
     justify-items: center;
     align-items: center;
 }
+
+.formWrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    justify-items: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 50px 0;
+}
+
+.formFields{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    margin: 50px 0;
+}
+
+.button {
+    color: #494949 !important;
+    text-decoration: none;
+    font-size: medium;
+    background: #ffffff;
+    padding: 20px;
+    border: 2px solid #494949 !important;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    }
+    .button:disabled,
+    .button[disabled]{
+        border: 1px solid #999999;
+        background-color: #999999;
+        color: #666666;
+        transition: none;
+    }
+    .button:hover:enabled {
+        color: #ffffff !important;
+        background: #f6b93b;
+        border-color: #f6b93b !important;
+        transition: all 0.4s ease 0s;
+        }
+    
+
