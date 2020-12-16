@@ -1,5 +1,5 @@
-export function calculateWinner(board: string[] | null[]) {
-    const fullTiles:string[]|null[] = board.filter(tile => tile!==null);
+export function calculateWinner(board: BoardState) {
+    const fullTiles:BoardState = board.filter(tile => tile!==null);
     const isComplete:boolean = Boolean(fullTiles.length===9);
 
     const lines:number[][] = [
@@ -12,9 +12,12 @@ export function calculateWinner(board: string[] | null[]) {
       [0, 4, 8],
       [2, 4, 6]
     ];
+
+    console.log(board, "::::::::");
         
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
+      console.log(">>>", board[a], board[b], board[c])
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
         return board[a];
       }

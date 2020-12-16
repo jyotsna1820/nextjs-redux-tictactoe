@@ -18,3 +18,18 @@ export const setPlayers = (name1:string, name2:string) => {
         }
     }
 }
+
+export const saveGame = (game:gameState) => {
+    return {
+        type:actionTypes.SAVE_GAME,
+        payload: {
+            game
+        }
+    }
+}
+
+export const resetGame = () => {
+    return {
+        type: actionTypes.RESET_GAME
+    }
+}

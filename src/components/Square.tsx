@@ -4,14 +4,17 @@ import {Button} from '@material-ui/core';
 
 export type SquareProps = {
     value: Tile;
-    // onClick: () => void;
+    onClick: (position:number) => void;
+    position: number;
+    isDisabled: boolean;
   };
 
 const Square = (props: SquareProps) => {
+  const disableIfFilled = props.value? true : false;
+
   console.log(props.value);
-    const style = props.value ? `squares ${props.value}` : `squares`;
     return (
-      <Button variant="contained" className={css.squares}>
+      <Button variant="contained" className={css.squares} onClick={()=>props.onClick(props.position)} disabled={props.isDisabled || disableIfFilled}>
         {props.value}
       </Button>
     );

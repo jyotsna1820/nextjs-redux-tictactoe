@@ -10,6 +10,14 @@ isNext: Tile,
 board: Array<Tile>
 };
 
+type series = gameState[];
+
+type seriesState = {
+    currentSeries: series,
+    historicalData: series[]
+}
+
 type rootState = {
-    game: gameState
+    game: gameState,
+    series: seriesState
 }
