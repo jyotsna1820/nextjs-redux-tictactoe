@@ -4,8 +4,8 @@ import * as actionTypes from '../actionTypes';
 const initialState = {
     playerX: {name: null, score:0},
     playerO: {name: null, score:0},
-    winner:null,
-    isNext: "X", 
+    winner:'',
+    isNext: "X" as const, 
     board: [...Array(9).fill(null)]
 }
 

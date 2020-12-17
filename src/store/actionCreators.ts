@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { Dispatch } from "redux";
 
 export const setTileSymbol = (position:number) => {
     return {
@@ -33,3 +34,58 @@ export const resetGame = () => {
         type: actionTypes.RESET_GAME
     }
 }
+
+export const savingToLocalStorage = () => {
+    return {
+        type: actionTypes.LOCALSTORAGE_PROCESSING
+    }
+}
+
+export const errorSavingLocalStorage = (err: string) => {
+    return {
+        type: actionTypes.LOCALSTORAGE_ERROR,
+        payload: {error: err}
+    }
+}
+export const successSavingLocalStorage = () => {
+    return {
+        type: actionTypes.LOCALSTORAGE_SUCCESS
+    }
+}
+
+export const successFetchLocalStorage = (historicalData: seriesState) => {
+    return {
+        type: actionTypes.FETCH_LOCALSTORAGE_SUCCESS,
+        payload: {
+            historicalData
+        }
+    }
+}
+
+export function saveToLocalStorage(series: series) {
+    return (dispatch: Dispatch<any>) => {
+        dispatch(savingToLocalStorage());
+        try{
+            const existingData = JSON.parse(localStorage.getItem("series") || '[]');
+            localStorage.setItem("series", JSON.stringify([...existingData, series]));
+        } catch (error){
+            dispatch(errorSavingLocalStorage(error))
+        }
+        dispatch(successSavingLocalStorage());
+        
+    }
+  }
+
+export function getFromLocalStorage() {
+    return (dispatch: Dispatch<any>) => {
+        dispatch(savingToLocalStorage());
+        try{
+            const existingData = JSON.parse(localStorage.getItem("series") || '[]');
+            return dispatch(successFetchLocalStorage(existingData))
+        } catch (error){
+            dispatch(errorSavingLocalStorage(error))
+        }
+        dispatch(successSavingLocalStorage());
+        
+    }
+  }

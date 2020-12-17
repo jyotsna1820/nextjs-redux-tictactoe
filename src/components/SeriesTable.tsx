@@ -8,6 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+type propTypes = {
+    series: series
+}
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -15,13 +19,13 @@ const useStyles = makeStyles({
 });
 
 function createData(game: gameState, index: number) {
-  return {gameNumber:index, winner: game.winner, playerX: game.playerX.score, playerO:game.playerO.score };
-}
+    return {gameNumber:index, winner: game.winner, playerX: game.playerX.score, playerO:game.playerO.score };
+  }
 
-const rows = seriesData.map((game: gameState, index: number) => createData(game, index));
-
-export default function BasicTable() {
+const SeriesTable = (props: propTypes) => {
   const classes = useStyles();
+  
+  const rows = props.series.map((game: gameState, index: number) => createData(game, index));
 
   return (
     <TableContainer component={Paper}>
@@ -49,4 +53,6 @@ export default function BasicTable() {
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default SeriesTable;

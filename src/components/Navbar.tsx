@@ -7,7 +7,7 @@ export default function Navbar(){
   <Toolbar>
     <IconButton edge="start" color="inherit" aria-label="menu">
     </IconButton>
-    <Button color="inherit">View History</Button>
+    <Button href="/history" color="inherit">View History</Button>
   </Toolbar>
 </AppBar>
     )

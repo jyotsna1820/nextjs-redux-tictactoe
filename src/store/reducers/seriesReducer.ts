@@ -2,7 +2,9 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
     currentSeries: [],
-    historicalData: []
+    historicalData: [],
+    loading: false,
+    error: ''
 }
 
 const seriesReducer = (state=initialState, action) => {
@@ -18,9 +20,32 @@ const seriesReducer = (state=initialState, action) => {
             else if (state.currentSeries.length === 5){
                 return{
                     ...state,
-                    historicalData:[...state.historicalData, state.currentSeries],
                     currentSeries:[]
                 }
+            }
+        case(actionTypes.LOCALSTORAGE_PROCESSING):
+            return {
+                ...state,
+                loading: true
+            }
+        case(actionTypes.LOCALSTORAGE_ERROR):
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }
+        case(actionTypes.LOCALSTORAGE_SUCCESS):
+            return{
+                ...state,
+                loading: false,
+                error: ''
+            }
+        case(actionTypes.FETCH_LOCALSTORAGE_SUCCESS):
+            return{
+                ...state,
+                loading: false,
+                error: '',
+                historicalData: action.payload.historicalData
             }
         default:
             return state;     

@@ -5,7 +5,7 @@ import {Typography } from '@material-ui/core';
 import css from '../styles/Game.module.css';
 import Board from '../src/components/Board';
 import {useSelector} from "react-redux";
-import {resetGame, saveGame, setTileSymbol} from '../src/store/actionCreators';
+import {resetGame, saveGame, setTileSymbol, saveToLocalStorage} from '../src/store/actionCreators';
 import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import {playerSelector, isNextSelector, boardSelector, winnerSelector, gameSelector} from '../src/store/reducers/gameReducer';
@@ -37,12 +37,17 @@ export default function Home() {
         }
         setScore({scoreO: scoreO, scoreX:scoreX});
     };
-    useEffect(() => calculateScores(series), [series]);
+    useEffect(() => { 
+    calculateScores(series);
+    if(series.length === 5){
+        dispatch(saveToLocalStorage(series))
+    }
+    },[series]);
 
     const startNewGame = () => {
         dispatch(saveGame(game));
         dispatch(resetGame());
-    } 
+    }
 
     return (
       <div>
