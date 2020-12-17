@@ -5,6 +5,8 @@ import Navbar from '../src/components/Navbar';
 import Players from '../src/components/Players';
 import css from '../styles/Game.module.css';
 
+
+
 const Home = () => {
   return (
     <div className={css.container}>

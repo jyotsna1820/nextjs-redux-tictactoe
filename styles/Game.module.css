@@ -2,6 +2,7 @@
 
 .gamePage{
     font-family: 'Roboto';
+    color:#455a64;
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -68,20 +69,21 @@
 }
 
 .button {
-    color: #494949 !important;
+    color: #455a64 !important;
     text-decoration: none;
     font-size: medium;
     background: #ffffff;
     padding: 20px;
-    border: 2px solid #494949 !important;
+    border: 2px solid #b0bec5 !important;
     display: inline-block;
     transition: all 0.4s ease 0s;
+    margin-bottom: 50px;
     }
     .button:disabled,
     .button[disabled]{
-        border: 1px solid #999999;
-        background-color: #999999;
-        color: #666666;
+        border: 1px solid #b0bec5;
+        background-color: #b0bec5;
+        color: #455a64;
         transition: none;
     }
     .button:hover:enabled {
@@ -90,5 +92,12 @@
         border-color: #f6b93b !important;
         transition: all 0.4s ease 0s;
         }
+
+.historyTable {
+    margin: 25px 0;
+}
+
+.turnText {
     
+}
 

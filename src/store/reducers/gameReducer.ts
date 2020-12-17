@@ -19,13 +19,11 @@ const gameReducer = (state=initialState, action) => {
                 playerO: {...state.playerO, name:action.payload.name2}
             }
         case(actionTypes.SET_TILE):
-            console.log("+++++++", state)
             let scoreX = 0;
             let scoreO = 0;
             const pos = action.payload.position;
             const board = [...state.board.slice(0,pos), state.isNext, ...state.board.slice(pos+1)]
             const winner = calculateWinner(board);
-            console.log(winner, "winnerrrr"); 
             if (winner && winner !== "T") {
                 scoreX = winner === "X" ? 2 : 1
                 scoreO = winner === "O" ? 2 : 1

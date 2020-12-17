@@ -2,7 +2,7 @@ type Tile = "X" | "O" | null;
 type BoardState = Value[];
 type Player = { name: string, score: number}
 
-type gameState = {
+interface gameState {
 playerX: Player,
 playerO: Player,
 winner: string,

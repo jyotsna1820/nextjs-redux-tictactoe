@@ -5,6 +5,7 @@ const initialState = {
     historicalData: [],
     loading: false,
     error: ''
+    
 }
 
 const seriesReducer = (state=initialState, action) => {
