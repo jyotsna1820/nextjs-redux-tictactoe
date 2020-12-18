@@ -2,8 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,18 +11,5 @@ a {
 
 * {
   box-sizing: border-box;
-}
-.squares{
-  width: 100px;
-  height: 100px;
-  background-color: #E3E4DB;
-}
-
-.X{
-  background-color: #AEA4BF;
-}
-
-.O{
-  background-color: #8F6593;
 }
 

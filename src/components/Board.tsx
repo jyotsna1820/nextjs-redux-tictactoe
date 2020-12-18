@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "./Square";
-import css from "../../styles/Game.module.css";
+import css from "../../styles/Game.module.scss";
 
 export type BoardProps = {
   onClick: (position: number) => void;

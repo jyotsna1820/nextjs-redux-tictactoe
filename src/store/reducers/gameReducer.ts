@@ -12,7 +12,6 @@ const initialState = {
 const gameReducer = (state = initialState, action: actionState) => {
   switch (action.type) {
     case actionTypes.SET_PLAYERS:
-      console.log(state, action.payload, ">>>>");
       return {
         ...state,
         playerX: { ...state.playerX, name: action.payload.name1 },

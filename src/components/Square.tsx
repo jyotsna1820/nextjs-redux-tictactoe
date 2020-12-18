@@ -1,5 +1,5 @@
 import React from "react";
-import css from "../../styles/Tile.module.css";
+import css from "../../styles/Tile.module.scss";
 import { Button } from "@material-ui/core";
 
 export type SquareProps = {
@@ -12,14 +12,13 @@ export type SquareProps = {
 const Square = (props: SquareProps) => {
   const disableIfFilled = props.value ? true : false;
   return (
-    <Button
-      variant="contained"
-      className={css.squares}
+    <button
+      className={css.tile + (props.value ? ` ${css[props.value]}` : '')}
       onClick={() => props.onClick(props.position)}
       disabled={props.isDisabled || disableIfFilled}
     >
       {props.value}
-    </Button>
+    </button>
   );
 };
 

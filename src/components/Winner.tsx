@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import css from "../../styles/Game.module.css";
+import css from "../../styles/Game.module.scss";
 import { Typography } from "@material-ui/core";
 
 type propTypes = {
@@ -16,9 +16,25 @@ const Winner = (props: propTypes) => {
   return (
     <div className={css.winner}>
       <Typography variant="h2">
-        {props.winner === "T" ? `Its a Tie!` : `${props.winner} wins`}.
+        {props.winner === "T" ? `Its a Tie!` : `${props.winner} wins`}
       </Typography>
-      <iframe src="https://giphy.com/embed/MEWeqM3BehSDLdghe2" width="429" height="480" frameBorder="0" allowFullScreen></iframe>
+      {props.winner === "T" ? (
+        <iframe
+          src="https://giphy.com/embed/d4aVubYhzgqwtG48"
+          width="480"
+          height="270"
+          frameBorder="0"
+          allowFullScreen
+        ></iframe>
+      ) : (
+        <iframe
+          src="https://giphy.com/embed/MEWeqM3BehSDLdghe2"
+          width="429"
+          height="480"
+          frameBorder="0"
+          allowFullScreen
+        ></iframe>
+      )}
       <button className={css.button} onClick={handleClick}>
         Go Back
       </button>

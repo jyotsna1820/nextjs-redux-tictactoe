@@ -43,7 +43,6 @@ const seriesReducer = (state = initialState, action: actionState) => {
           scoreO,
         };
       } else if (currentSeries.length === 5) {
-        console.log(currentSeries, state.currentSeries.length, state,"----------")
         const seriesWinner = calculateSeriesWinner(scoreX, scoreO);
         return {
           ...state,

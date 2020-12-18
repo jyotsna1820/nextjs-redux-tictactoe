@@ -6,7 +6,7 @@ import { resetGame, resetSeries } from "../src/store/actionCreators";
 import { Typography } from "@material-ui/core";
 import Navbar from "../src/components/Navbar";
 import Players from "../src/components/Players";
-import css from "../styles/Game.module.css";
+import css from "../styles/Game.module.scss";
 
 const Home = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -24,7 +24,7 @@ const Home = () => {
       <div className={css.gamePage}>
         <div className={css.heading}>
           <Typography variant="h2" gutterBottom>
-            Welcome to TIC TAC TOE
+            The Ultimate TIC TAC TOE Championship!
           </Typography>
           <Typography variant="body1" gutterBottom>
             This tournament consists of 5 games. For each game, the winner gets

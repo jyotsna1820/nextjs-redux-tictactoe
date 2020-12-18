@@ -4,7 +4,7 @@ import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import { setPlayers } from "../store/actionCreators";
 import { TextField } from "@material-ui/core";
-import css from "../../styles/Game.module.css";
+import css from "../../styles/Game.module.scss";
 
 const Players = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -28,7 +28,7 @@ const Players = () => {
   };
 
   const isDisabled = (): boolean => {
-    if (playerO.length > 4 && playerX.length > 4) {
+    if (playerO.length > 2 && playerX.length > 2) {
       return false;
     }
     return true;
@@ -48,7 +48,7 @@ const Players = () => {
           onChange={handlePlayerX}
           label="Enter Name for PlayerX"
           variant="outlined"
-          helperText="5 characters or more"
+          helperText="3 characters or more"
           required
         />
         <TextField
@@ -56,7 +56,7 @@ const Players = () => {
           value={playerO}
           onChange={handlePlayerO}
           label="Enter Name for PlayerO"
-          helperText="5 characters or more"
+          helperText="3 characters or more"
           variant="outlined"
           required
         />

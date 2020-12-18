@@ -37,7 +37,6 @@ const SeriesTable = (props: propTypes) => {
     createData(game, index)
   );
   if(props.series.length > 0){
-    console.log(props.series, "==============>>>>>>")
     playerXName = props.series[0].playerX.name;
     playerOName = props.series[0].playerO.name;
   };

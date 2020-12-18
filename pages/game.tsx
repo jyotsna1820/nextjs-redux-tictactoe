@@ -15,7 +15,7 @@ import {
   seriesSelector,
   seriesResultSelector,
 } from "../src/store/reducers/seriesReducer";
-import css from "../styles/Game.module.css";
+import css from "../styles/Game.module.scss";
 import Board from "../src/components/Board";
 import Navbar from "../src/components/Navbar";
 import Winner from "../src/components/Winner";
