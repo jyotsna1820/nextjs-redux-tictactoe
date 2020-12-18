@@ -1,16 +1,16 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 type propTypes = {
-    series: series
-}
+  series: series;
+};
 
 const useStyles = makeStyles({
   table: {
@@ -19,13 +19,28 @@ const useStyles = makeStyles({
 });
 
 function createData(game: gameState, index: number) {
-    return {gameNumber:index, winner: game.winner, playerX: game.playerX.score, playerO:game.playerO.score };
-  }
+  return {
+    gameNumber: index,
+    winner: game.winner,
+    playerX: game.playerX.score,
+    playerO: game.playerO.score,
+
+  };
+}
 
 const SeriesTable = (props: propTypes) => {
   const classes = useStyles();
-  
-  const rows = props.series.map((game: gameState, index: number) => createData(game, index));
+  let playerXName;
+  let playerOName;
+
+  const rows = props.series.map((game: gameState, index: number) =>
+    createData(game, index)
+  );
+  if(props.series.length > 0){
+    console.log(props.series, "==============>>>>>>")
+    playerXName = props.series[0].playerX.name;
+    playerOName = props.series[0].playerO.name;
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -34,8 +49,8 @@ const SeriesTable = (props: propTypes) => {
           <TableRow>
             <TableCell>Game #</TableCell>
             <TableCell align="right">Winner</TableCell>
-            <TableCell align="right">Player X Score</TableCell>
-            <TableCell align="right">Player O Score</TableCell>
+            <TableCell align="right">{playerXName} Score</TableCell>
+            <TableCell align="right">{playerOName} Score</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

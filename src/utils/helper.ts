@@ -11,13 +11,9 @@ export function calculateWinner(board: BoardState) {
       [2, 5, 8],
       [0, 4, 8],
       [2, 4, 6]
-    ];
-
-    console.log(board, "::::::::");
-        
+    ];        
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      console.log(">>>", board[a], board[b], board[c])
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
         return board[a];
       }

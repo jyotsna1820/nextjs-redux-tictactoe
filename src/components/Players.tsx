@@ -56,7 +56,7 @@ const Players = () => {
           value={playerO}
           onChange={handlePlayerO}
           label="Enter Name for PlayerO"
-          helperText = "5 characters or more"
+          helperText="5 characters or more"
           variant="outlined"
           required
         />

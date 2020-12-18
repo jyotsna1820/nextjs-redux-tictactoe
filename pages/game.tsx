@@ -11,33 +11,36 @@ import {
   winnerSelector,
   gameSelector,
 } from "../src/store/reducers/gameReducer";
-import { seriesSelector } from "../src/store/reducers/seriesReducer";
+import {
+  seriesSelector,
+  seriesResultSelector,
+} from "../src/store/reducers/seriesReducer";
 import css from "../styles/Game.module.css";
 import Board from "../src/components/Board";
 import Navbar from "../src/components/Navbar";
 import Winner from "../src/components/Winner";
+import SeriesTable from "../src/components/SeriesTable";
 import { useSelector } from "react-redux";
 import {
   resetGame,
   saveGame,
   setTileSymbol,
   saveToLocalStorage,
+  resetSeries,
 } from "../src/store/actionCreators";
-
 
 export default function Home() {
   const dispatch: Dispatch<any> = useDispatch();
   const router = useRouter();
-  const [score, setScore] = useState({ scoreO: 0, scoreX: 0 });
-  const [gameNumber, setGameNumber] = useState<number>(1)
-  const [buttonText, setButtonText] = useState<string>("Game");
-  const [seriesWinner, setSeriesWinner] = useState<string | undefined>(undefined)
   const players = useSelector((state: rootState) => playerSelector(state));
   const board = useSelector((state: rootState) => boardSelector(state));
   const isNext = useSelector((state: rootState) => isNextSelector(state));
   const series = useSelector((state: rootState) => seriesSelector(state));
   const winner = useSelector((state: rootState) => winnerSelector(state));
   const game = useSelector((state: rootState) => gameSelector(state));
+  const seriesResult = useSelector((state: rootState) =>
+    seriesResultSelector(state)
+  );
 
   const handleClick = (position: number) => {
     dispatch(setTileSymbol(position));
@@ -50,34 +53,25 @@ export default function Home() {
       scoreX += game.playerX.score;
       scoreO += game.playerO.score;
     }
-    setScore({ scoreO: scoreO, scoreX: scoreX });
-  };
-  const startNewGame = () => {
-    dispatch(saveGame(game));
-    dispatch(resetGame());
   };
 
-  // calculates series winner by comparing scores
-  const calculateSeriesWinner = () => {
-    if(score.scoreX > score.scoreO){
-      setSeriesWinner(players.playerX.name);
+  const startNewGame = () => {
+    dispatch(resetGame());
+    if (series.length === 5) {
+      dispatch(resetSeries());
     }
-    else if (score.scoreO === score.scoreX){
-      setSeriesWinner("Tie");
+  };
+
+  useEffect(() => {
+    if (winner) {
+      dispatch(saveGame(game));
     }
-    else{
-      setSeriesWinner(players.playerO.name);
-    }
-  }
+  }, [winner]);
 
   useEffect(() => {
     calculateScores(series);
-    setGameNumber(gameNumber+1);
     if (series.length === 5) {
-      calculateSeriesWinner();
       dispatch(saveToLocalStorage(series));
-      setButtonText("Series");
-      setGameNumber(1);
     }
   }, [series]);
 
@@ -95,42 +89,53 @@ export default function Home() {
       </Head>
       <Navbar />
       <div className={css.gamePage}>
-      {seriesWinner ? 
-      <Winner winner={seriesWinner} score={Math.max(score.scoreX, score.scoreO)}/>
-       : 
-       <>
-       <div className={css.heading}>
-       <Typography variant="h2" gutterBottom>
-         Game {gameNumber}
-       </Typography>
-     </div>
-     <div className={css.boardWrapper}>
-       <div className={css.scoreList}>
-         <p className={css.turnText}>{isNext === "X" ? "Your turn" : ""}</p>
-         <h2>{players.playerX.name}(X)'s Score</h2>
-         {score.scoreX}
-       </div>
-       <Board
-         onClick={handleClick}
-         board={board}
-         isDisabled={isDisabled()}
-       />
-       <div className={css.scoreList}>
-         <p className={css.turnText}>{isNext === "O" ? "Your turn" : ""}</p>
-         <h2>{players.playerO.name}(O)'s Score</h2>
-         {score.scoreO}
-       </div>
-     </div> </>
-        }
+          {seriesResult.seriesWinner ? (
+            <div className={css.gameWrapper}>
+            <Winner
+              winner={seriesResult.seriesWinner}
+              score={seriesResult.scores}
+            />
+            </div>
+          ) : (
+            <div className={css.gameWrapper}>
+              <div className={css.heading}>
+                <Typography variant="h2" gutterBottom>
+                  Game {series.length + 1}
+                </Typography>
+              </div>
+              <div className={css.boardWrapper}>
+                <div className={css.scoreList}>
+                  <h2>{players.playerX.name}(X)'s Score</h2>
+                  {seriesResult.scores.scoreX}
+                  <p className={css.turnText}>
+                  {isNext === "X" && !winner ? "Your turn" : ""}
+                </p>
+                </div>
+                <Board
+                  onClick={handleClick}
+                  board={board}
+                  isDisabled={isDisabled()}
+                />
+                <div className={css.scoreList}>
+                  <h2>{players.playerO.name}(O)'s Score</h2>
+                  {seriesResult.scores.scoreO}
+                  <p className={css.turnText}>
+                  {isNext === "O" && !winner ? "Your turn" : ""}
+                </p>
+                </div>
+              </div>
+              </div>
+          )}
         <div>
           <button
             className={css.button}
             disabled={!isDisabled()}
             onClick={startNewGame}
           >
-            Start Next {buttonText}
+            Start Next {series.length === 5 ? "Series" : "Game"}
           </button>
         </div>
+        <SeriesTable series={series} />
       </div>
     </div>
   );

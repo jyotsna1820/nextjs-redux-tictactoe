@@ -9,7 +9,7 @@ export default function Navbar(){
     router.push(path);
   };
     return (
-        <AppBar position="static">
+        <AppBar style={{ background:"#f6b93b"}} position="static">
           <Toolbar>
             <IconButton edge="start" color="inherit" aria-label="menu">
             </IconButton>
