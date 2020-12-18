@@ -75,11 +75,11 @@ export default function Home() {
     }
   }, [series]);
 
-  // useEffect(() => {
-  //     if(!players.playerX.name || !players.playerO.name){
-  //         router.push('/');
-  //     }
-  // });
+  useEffect(() => {
+      if(!players.playerX.name || !players.playerO.name){
+          router.push('/');
+      }
+  });
 
   return (
     <div>

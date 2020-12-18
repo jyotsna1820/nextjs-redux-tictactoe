@@ -57,23 +57,6 @@
     justify-items: center;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 50px 0;
-}
-
-.formFields{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 80%;
-    margin: 50px 0;
-}
 
 .tile {
     color: #455a64 !important;
@@ -149,4 +132,16 @@
     font-family: 'Montserrat';
     margin: 5px 10px;
     font-size: larger;
+}
+
+.introHead {
+    font-family: 'Montserrat';
+    font-size: xx-large;
+    font-weight: 600;
+    font-stretch: expanded;
+}
+
+.introText {
+    font-size: large;
+    line-height: 1.6;
 }

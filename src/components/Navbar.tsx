@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {AppBar,Toolbar, IconButton, Button, Typography} from '@material-ui/core';
+import {AppBar,Toolbar, IconButton} from '@material-ui/core';
 import css from "../../styles/Game.module.scss";
 
 export default function Navbar(){

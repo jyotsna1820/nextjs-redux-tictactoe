@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import { setPlayers } from "../store/actionCreators";
-import { TextField } from "@material-ui/core";
 import css from "../../styles/Game.module.scss";
+import formStyle from "../../styles/Form.module.scss";
 
 const Players = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -38,28 +38,32 @@ const Players = () => {
     <form
       noValidate
       autoComplete="off"
-      className={css.form}
+      className={formStyle.form}
       onSubmit={handleSubmit}
     >
-      <div className={css.formFields}>
-        <TextField
+      <div className={formStyle.formFields}>
+        <div>
+        <label htmlFor="playerX" className={formStyle.form__label}>Enter Name for PlayerX</label>
+        <input
           id="playerX"
+          className={formStyle.form__input}
           value={playerX}
           onChange={handlePlayerX}
-          label="Enter Name for PlayerX"
-          variant="outlined"
-          helperText="3 characters or more"
           required
+          placeholder="3 characters or more"
         />
-        <TextField
+        </div>
+        <div>
+        <label htmlFor="playerX" className={formStyle.form__label}>Enter Name for PlayerO</label>
+        <input
           id="playerO"
           value={playerO}
+          className={formStyle.form__input}
           onChange={handlePlayerO}
-          label="Enter Name for PlayerO"
-          helperText="3 characters or more"
-          variant="outlined"
           required
+          placeholder="3 characters or more"
         />
+        </div>
       </div>
       <button type="submit" className={css.button} disabled={isDisabled()}>
         Start Tournament

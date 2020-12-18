@@ -1,6 +1,5 @@
 import React from "react";
 import css from "../../styles/Tile.module.scss";
-import { Button } from "@material-ui/core";
 
 export type SquareProps = {
   value: Tile;
